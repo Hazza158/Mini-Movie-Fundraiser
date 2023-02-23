@@ -20,4 +20,4 @@ while tickets_sold < MAX_TICKETS:
 if tickets_sold == MAX_TICKETS:
     print("congrats you have sold all the tickets")
 else:
-    print("you have sold {} ticket/s. there is {} ticket/s remaining").format(tickets_sold, MAX_TICKETS - tickets_sold)
+    print("you have sold {} ticket/s. there is {} ticket/s remaining".format(tickets_sold, MAX_TICKETS - tickets_sold))
