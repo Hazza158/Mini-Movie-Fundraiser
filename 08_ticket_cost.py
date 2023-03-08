@@ -12,5 +12,13 @@ mini_movie_dict = {
 }
 
 mini_movie_frame = pandas.DataFrame(mini_movie_dict)
+
+# Calculate the total ticket cost (ticket + surcharge)
+mini_movie_frame['Total'] = mini_movie_dict['surcharge'] + mini_movie_frame['Ticket Price']
+
+# Calculate the profit for each ticket
+mini_movie_frame['Profit'] = mini_movie_frame['Ticket Price'] - 5
+
 print(mini_movie_frame)
+
 
