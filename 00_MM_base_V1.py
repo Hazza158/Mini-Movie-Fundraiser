@@ -1,3 +1,5 @@
+import pandas
+
 # functions go here
 
 # checks user has entered yes / no to a question
@@ -59,11 +61,30 @@ def calc_ticket_price(var_age):
 
     return price
 
+
+# currency formatting function
+def currency(x):
+    return "${:.2f}".format(x)
+
+
 # main routine goes here
 
 # set max num of tickets below
-MAX_TICKETS = 3
+MAX_TICKETS = 5
 tickets_sold = 0
+
+
+# lists to hold ticket details
+all_names = []
+all_ticket_costs = []
+surcharge = []
+
+# dictionary used to create data frame ie: column_name:list
+mini_movie_dict = {
+    "Name": all_names,
+    "Ticket Price": all_ticket_costs,
+    "Surcharge": surcharge
+}
 
 # asks user if they want to see the instructions
 want_instructions = yes_no("do you want to read the instructions?")
