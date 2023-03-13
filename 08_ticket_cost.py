@@ -1,8 +1,10 @@
 import pandas
 
+
 # currency formatting function
 def currency(x):
     return "${:.2f}".format(x)
+
 
 # dictionaries to hold ticket details
 all_names = ["a", "b", "c", "d", "e"]
@@ -33,5 +35,3 @@ print(mini_movie_frame)
 # output total ticket sales and profit
 print("Total Ticket Sales: ${:.2f}".format(total))
 print("Total Profit : ${:.2f}".format(profit))
-
-

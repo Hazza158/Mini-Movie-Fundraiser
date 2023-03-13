@@ -2,22 +2,6 @@ import pandas
 
 # functions go here
 
-# checks user has entered yes / no to a question
-def yes_no(question):
-
-    while True:
-        response = input(question).lower()
-
-        if response == "yes" or response == "y":
-            return "yes"
-
-        elif response == "no" or response == "n":
-            return "no"
-
-        else:
-            print("please enter yes or no")
-
-
 # checks user response is not blank
 def not_blank(question):
 
@@ -62,6 +46,22 @@ def calc_ticket_price(var_age):
     return price
 
 
+# checks that users enter a valid response (eg yes / no
+# cash / credit) based on a list of options
+def string_checker(question, num_letters, valid_responses):
+
+    error = "please choose {} or {}".format(valid_responses[0], valid_responses[1])
+
+    while True:
+        response = input(question).lower()
+
+        for item in valid_responses:
+            if response == item[:num_letters] or response == item:
+                return item
+
+        print(error)
+
+
 # currency formatting function
 def currency(x):
     return "${:.2f}".format(x)
@@ -73,21 +73,24 @@ def currency(x):
 MAX_TICKETS = 5
 tickets_sold = 0
 
+yes_no_list = ["yes", "no"]
+payment_list = ["cash", "credit"]
+
 
 # lists to hold ticket details
 all_names = []
 all_ticket_costs = []
-surcharge = []
+all_surcharge = []
 
 # dictionary used to create data frame ie: column_name:list
 mini_movie_dict = {
     "Name": all_names,
     "Ticket Price": all_ticket_costs,
-    "Surcharge": surcharge
+    "Surcharge": all_surcharge
 }
 
 # asks user if they want to see the instructions
-want_instructions = yes_no("do you want to read the instructions?")
+want_instructions = string_checker("do you want to read the instructions (y/n): ", 1, yes_no_list)
 
 if want_instructions == "yes" or want_instructions == "y":
     print("instructions go here")
@@ -114,9 +117,23 @@ while tickets_sold < MAX_TICKETS:
 
     # calculate tickets cost
     ticket_cost = calc_ticket_price(age)
-    print("Age: {}, Ticket Price: ${:.2f}".format(age, ticket_cost))
+
+    # get payment method
+    pay_method = string_checker("Choose a payment method", 2, payment_list)
+
+    if pay_method == "cash":
+        surcharge = 0
+    else:
+        # calculate 5% surcharge if users are paying by credit card
+        surcharge = ticket_cost * 0.05
 
     tickets_sold += 1
+
+    # add ticket name, cost and surcharge to lists
+    all_names.append(name)
+    all_ticket_costs.append(ticket_cost)
+    all_surcharge.append(surcharge)
+
 
 # output number of tickets sold
 if tickets_sold == MAX_TICKETS:
