@@ -1,10 +1,10 @@
 import pandas
 
+
 # functions go here
 
 # checks user response is not blank
 def not_blank(question):
-
     while True:
         response = input(question)
 
@@ -16,7 +16,6 @@ def not_blank(question):
 
 # checks users enter an integer t oa given question
 def num_check(question):
-
     while True:
 
         try:
@@ -30,7 +29,6 @@ def num_check(question):
 
 # calculate the ticket price based on the age
 def calc_ticket_price(var_age):
-
     # ticket is $7.50 for users under 16
     if var_age < 16:
         price = 7.5
@@ -49,7 +47,6 @@ def calc_ticket_price(var_age):
 # checks that users enter a valid response (eg yes / no
 # cash / credit) based on a list of options
 def string_checker(question, num_letters, valid_responses):
-
     error = "please choose {} or {}".format(valid_responses[0], valid_responses[1])
 
     while True:
@@ -75,7 +72,6 @@ tickets_sold = 0
 
 yes_no_list = ["yes", "no"]
 payment_list = ["cash", "credit"]
-
 
 # lists to hold ticket details
 all_names = []
@@ -133,6 +129,13 @@ while tickets_sold < MAX_TICKETS:
     all_names.append(name)
     all_ticket_costs.append(ticket_cost)
     all_surcharge.append(surcharge)
+
+# create data frame from dictionary to organise information
+mini_movie_frame = pandas.DataFrame(mini_movie_dict)
+mini_movie_frame = mini_movie_frame.set_index('Name')
+
+
+
 
 
 # output number of tickets sold
