@@ -130,7 +130,7 @@ while tickets_sold < MAX_TICKETS:
     if name == 'XXX' and len(all_names) > 0:
         break
     elif name == 'XXX':
-        print("You must sell at least ONE ticket before quitting")
+        print("You must sell at least ONE (1) ticket before quitting")
         continue
     age = num_check("Age: ")
 
@@ -199,7 +199,7 @@ month = today.strftime("%m")
 year = today.strftime("%y")
 
 heading = "---- Mini Movie Fundraiser Ticket Data ({}/{}/{}) ----\n".format(day, month, year)
-filename = "MMF_{}_{}_{}".format(year, month, day)
+filename = "MMF_{}_{}_{}".format(day, month, year)
 
 # Change frame to a string so that we can export it to a file
 mini_movie_string = pandas.DataFrame.to_string(mini_movie_frame)
